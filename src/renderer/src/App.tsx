@@ -1,3 +1,7 @@
 export function App() {
-  return <h1 className="text-violet-400 font-bold text-4xl">Hello world</h1>
+  return (
+    <div className="h-screen w-scree text-rotion-100">
+      <h1>Ei</h1>
+    </div>
+  )
 }
