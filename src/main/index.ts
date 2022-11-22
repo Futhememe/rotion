@@ -1,5 +1,5 @@
 import { app, shell, BrowserWindow } from 'electron'
-import * as path from 'path'
+import * as path from 'node:path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 
 function createWindow(): void {
@@ -36,6 +36,10 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
   }
+}
+
+if (process.platform === 'darwin') {
+  app.dock.setIcon(path.resolve(__dirname, 'icon.png'))
 }
 
 // This method will be called when Electron has finished
