@@ -4,6 +4,7 @@ import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import StarterKit from '@tiptap/starter-kit'
 import { EditorContent, useEditor } from '@tiptap/react'
+import { BubbleMenu } from '../BubbleMenu'
 
 export const Editor = () => {
   const editor = useEditor({
@@ -31,5 +32,10 @@ export const Editor = () => {
     },
   })
 
-  return <EditorContent className="w-[65ch]" editor={editor} />
+  return (
+    <>
+      {editor && <BubbleMenu editor={editor} />}
+      <EditorContent className="w-[65ch]" editor={editor} />
+    </>
+  )
 }
