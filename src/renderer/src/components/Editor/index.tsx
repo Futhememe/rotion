@@ -3,6 +3,7 @@ import Typograph from '@tiptap/extension-typography'
 import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { BubbleMenu } from '../BubbleMenu'
 
@@ -22,6 +23,7 @@ export const Editor = () => {
       Document.extend({
         content: 'heading block*',
       }),
+      Underline,
     ],
     content: '<h1>BACK-END</h1><p>Esse é um documento sobre backend</p>',
     autofocus: 'end',
