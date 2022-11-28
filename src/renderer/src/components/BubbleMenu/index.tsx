@@ -9,7 +9,7 @@ export const BubbleMenu = ({ editor }: IBubbleMenu) => {
   return (
     <TipBubbleMenu editor={editor}>
       <Toggle.Root
-        className={clsx('p-2 bg-rotion-800 border-rotion-500 border-r-0 border rounded-l', {
+        className={clsx('p-2 bg-rotion-800 border-rotion-500 border rounded-l', {
           'bg-rotion-600': editor.isActive('bold'),
         })}
         onClick={() => editor.chain().focus().toggleBold().run()}
@@ -17,7 +17,7 @@ export const BubbleMenu = ({ editor }: IBubbleMenu) => {
         <TextBolder size={16} />
       </Toggle.Root>
       <Toggle.Root
-        className={clsx('p-2 bg-rotion-800 border-rotion-500 border', {
+        className={clsx('p-2 bg-rotion-800 border-l-0 border-r-0 border-rotion-500 border', {
           'bg-rotion-600': editor.isActive('italic'),
         })}
         onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -25,7 +25,7 @@ export const BubbleMenu = ({ editor }: IBubbleMenu) => {
         <TextItalic size={16} />
       </Toggle.Root>
       <Toggle.Root
-        className={clsx('p-2 bg-rotion-800 border-rotion-500 border', {
+        className={clsx('p-2 bg-rotion-800 border-r-0 border-rotion-500 border', {
           'bg-rotion-600': editor.isActive('strike'),
         })}
         onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -33,7 +33,7 @@ export const BubbleMenu = ({ editor }: IBubbleMenu) => {
         <TextStrikethrough size={16} />
       </Toggle.Root>
       <Toggle.Root
-        className={clsx('p-2 bg-rotion-800 border-rotion-500 border-l-0 border rounded-r', {
+        className={clsx('p-2 bg-rotion-800 border-rotion-500 border rounded-r', {
           'bg-rotion-600': editor.isActive('underline'),
         })}
         onClick={() => editor.chain().focus().toggleUnderline().run()}
