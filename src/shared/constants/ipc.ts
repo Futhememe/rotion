@@ -1,6 +1,6 @@
 export const IPC = {
   DOCUMENTS: {
-    FETCH_ALL: 'documents: fetch_all',
+    FETCH_ALL: 'documents: fetch-all',
     FETCH: 'documents: fetch',
     CREATE: 'documents: create',
     SAVE: 'documents: save',

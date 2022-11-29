@@ -7,7 +7,11 @@ import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { BubbleMenu } from '../BubbleMenu'
 
-export const Editor = () => {
+interface IEditor {
+  content: string
+}
+
+export const Editor = ({ content }: IEditor) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -25,7 +29,7 @@ export const Editor = () => {
       }),
       Underline,
     ],
-    content: '<h1>BACK-END</h1><p>Esse é um documento sobre backend</p>',
+    content,
     autofocus: 'end',
     editorProps: {
       attributes: {

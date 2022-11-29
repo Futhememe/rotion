@@ -9,7 +9,8 @@ export function Routes() {
       main={
         <Route path="/" element={<Default />}>
           <Route path="/" element={<Blank />} />
-          <Route path="/document" element={<Document />} />
+
+          <Route path="/document/:id" element={<Document />} />
         </Route>
       }
     />
