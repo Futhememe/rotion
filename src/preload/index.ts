@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI, ElectronAPI } from '@electron-toolkit/preload'
-import { IPC } from '../shared/constants/ipc'
+import { IPC } from '@shared/constants/ipc'
 import {
   CreateDocumentResponse,
   DeleteDocumentRequest,
@@ -8,7 +8,7 @@ import {
   FetchDocumentRequest,
   FetchDocumentResponse,
   SaveDocumentRequest,
-} from '../shared/types/ipc'
+} from '@shared/types/ipc'
 
 declare global {
   export interface Window {

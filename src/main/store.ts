@@ -1,5 +1,5 @@
 import Store from 'electron-store'
-import { IDocument } from '../shared/types/ipc'
+import { IDocument } from '@shared/types/ipc'
 
 interface IStore {
   documents: Record<string, IDocument>
