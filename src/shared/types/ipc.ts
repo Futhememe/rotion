@@ -27,9 +27,9 @@ export interface FetchAllDocumentsResponse {
 }
 
 export interface FetchDocumentResponse {
-  data: Document
+  data: IDocument
 }
 
 export interface CreateDocumentResponse {
-  data: Document
+  data: IDocument
 }
