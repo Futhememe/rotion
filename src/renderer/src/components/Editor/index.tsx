@@ -1,24 +1,30 @@
 import Highlight from '@tiptap/extension-highlight'
-import Typograph from '@tiptap/extension-typography'
+import Typography from '@tiptap/extension-typography'
 import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
-import { BubbleMenu } from '../BubbleMenu'
+// import { BubbleMenu } from '../BubbleMenu'
 
-interface IEditor {
+export interface OnContentUpdatedParams {
+  title: string
   content: string
 }
 
-export const Editor = ({ content }: IEditor) => {
+interface IEditor {
+  content: string
+  onContentUpdated: (params: OnContentUpdatedParams) => void
+}
+
+export const Editor = ({ content, onContentUpdated }: IEditor) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
         document: false,
       }),
       Highlight,
-      Typograph,
+      Typography,
       Placeholder.configure({
         placeholder: 'Untitled',
         emptyEditorClass:
@@ -29,6 +35,15 @@ export const Editor = ({ content }: IEditor) => {
       }),
       Underline,
     ],
+    onUpdate: ({ editor }) => {
+      const contentRegex = /(<h1>(?<title>.*)<\/h1>(?<content>.*)?)/
+      const parsedContent = editor.getHTML().match(contentRegex)?.groups
+
+      const title = parsedContent?.title ?? 'Untitled'
+      const content = parsedContent?.content ?? ''
+
+      onContentUpdated({ title, content })
+    },
     content,
     autofocus: 'end',
     editorProps: {
@@ -40,7 +55,7 @@ export const Editor = ({ content }: IEditor) => {
 
   return (
     <>
-      {editor && <BubbleMenu editor={editor} />}
+      {/* {editor && <BubbleMenu editor={editor} />} */}
       <EditorContent className="w-[65ch]" editor={editor} />
     </>
   )
