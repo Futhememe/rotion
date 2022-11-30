@@ -8,6 +8,7 @@ import { createFileRoute, createURLRoute } from 'electron-router-dom'
 // functions ipc to run on main
 import './ipc'
 import './store'
+import './tray.ts'
 
 function createWindow(): void {
   // Create the browser window.
