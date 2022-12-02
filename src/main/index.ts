@@ -4,11 +4,11 @@ import { app, shell, BrowserWindow } from 'electron'
 import * as path from 'node:path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { createFileRoute, createURLRoute } from 'electron-router-dom'
+import { createTray } from './tray'
 
 // functions ipc to run on main
 import './ipc'
 import './store'
-import './tray.ts'
 
 function createWindow(): void {
   // Create the browser window.
@@ -33,6 +33,8 @@ function createWindow(): void {
       sandbox: false,
     },
   })
+
+  createTray(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
