@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: rotion
+appId: com.futhememe.rotion
+productName: Rotion
 directories:
   buildResources: build
 files:
@@ -10,7 +10,8 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
   - '**/*.{node,dll}'
-afterSign: build/notarize.js
+  # Só faz sentido se tiver assinando o código
+# afterSign: build/notarize.js
 win:
   executableName: rotion
 nsis:
@@ -30,13 +31,14 @@ dmg:
 linux:
   target:
     - AppImage
-    - snap
+    # - snap
     - deb
-  maintainer: electronjs.org
+    - rpm
+    - pacman
+    - freebsd
+  maintainer: github.com/Futhememe
+  synopsis: ${description}
   category: Utility
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
-publish:
-  provider: generic
-  url: https://example.com/auto-updates
