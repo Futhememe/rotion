@@ -1,11 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { IDocument } from '@shared/types/ipc'
 import { Editor, OnContentUpdatedParams } from '../components/Editor'
 import { ToC } from '../components/ToC'
+import { JSONContent } from '@tiptap/react'
 
 export const Document = () => {
+  const [editorContent, setEditorContent] = useState<JSONContent | undefined>(undefined)
+
   const { id } = useParams<{ id: string }>()
 
   const { data, isFetching } = useQuery(['document', id], async () => {
@@ -46,11 +49,16 @@ export const Document = () => {
     return ''
   }, [data])
 
-  const handleEditorContentUpdated = ({ title, content }: OnContentUpdatedParams) => {
+  const handleEditorContentUpdated = ({ title, content, jsonContent }: OnContentUpdatedParams) => {
     saveDocument({
       title,
       content,
     })
+    setEditorContent(jsonContent)
+  }
+
+  const handleEditorContentCreated = (content: JSONContent) => {
+    setEditorContent(content)
   }
 
   return (
@@ -59,17 +67,28 @@ export const Document = () => {
         {/* eslint-disable-next-line prettier/prettier */}
         <span className="text-rotion-300 font-semibold text-xs uppercase">Table of contents</span>
         <ToC.Root>
-          <ToC.Link>Back-end</ToC.Link>
-          <ToC.Section>
-            <ToC.Link>banco de dados</ToC.Link>
-            <ToC.Link>Autenticacao</ToC.Link>
-          </ToC.Section>
+          {editorContent?.content?.map((content) => {
+            if (content.type === 'heading' && content?.attrs?.level === 1) {
+              return <ToC.Link>{content?.content?.[0]?.text}</ToC.Link>
+            }
+            if (content.type === 'heading' && content?.attrs?.level === 2) {
+              return (
+                <ToC.Section>
+                  <ToC.Link>{content?.content?.[0]?.text}</ToC.Link>
+                </ToC.Section>
+              )
+            }
+          })}
         </ToC.Root>
       </aside>
 
       <section className="flex-1 flex flex-col items-center">
         {!isFetching && data && (
-          <Editor content={initialContent} onContentUpdated={handleEditorContentUpdated} />
+          <Editor
+            content={initialContent}
+            onContentUpdated={handleEditorContentUpdated}
+            onCreateEditor={handleEditorContentCreated}
+          />
         )}
       </section>
     </main>

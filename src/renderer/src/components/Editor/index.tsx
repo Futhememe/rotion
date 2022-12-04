@@ -4,20 +4,22 @@ import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
-import { EditorContent, useEditor } from '@tiptap/react'
+import { EditorContent, JSONContent, useEditor } from '@tiptap/react'
 // import { BubbleMenu } from '../BubbleMenu'
 
 export interface OnContentUpdatedParams {
   title: string
   content: string
+  jsonContent?: JSONContent
 }
 
 interface IEditor {
   content: string
   onContentUpdated: (params: OnContentUpdatedParams) => void
+  onCreateEditor?: (content: JSONContent) => void
 }
 
-export const Editor = ({ content, onContentUpdated }: IEditor) => {
+export const Editor = ({ content, onContentUpdated, onCreateEditor }: IEditor) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -35,14 +37,21 @@ export const Editor = ({ content, onContentUpdated }: IEditor) => {
       }),
       Underline,
     ],
+    onCreate: ({ editor }) => {
+      const jsonContent = editor.getJSON()
+
+      onCreateEditor?.(jsonContent)
+    },
     onUpdate: ({ editor }) => {
       const contentRegex = /(<h1>(?<title>.*)<\/h1>(?<content>.*)?)/
       const parsedContent = editor.getHTML().match(contentRegex)?.groups
 
+      const jsonContent = editor.getJSON()
+
       const title = parsedContent?.title ?? 'Untitled'
       const content = parsedContent?.content ?? ''
 
-      onContentUpdated({ title, content })
+      onContentUpdated({ title, content, jsonContent })
     },
     content,
     autofocus: 'end',
