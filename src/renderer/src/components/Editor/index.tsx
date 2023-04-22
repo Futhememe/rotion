@@ -65,7 +65,7 @@ export const Editor = ({ content, onContentUpdated, onCreateEditor }: IEditor) =
 
   return (
     <div>
-      {/* {editor && <FloatingMenu editor={editor} />} */}
+      {editor && <FloatingMenu editor={editor} />}
       {editor && <BubbleMenu editor={editor} />}
       <EditorContent className="w-[65ch]" editor={editor} />
     </div>
