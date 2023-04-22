@@ -27,6 +27,7 @@
     "@tanstack/react-query": "^4.16.1",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.202",
     "@tiptap/extension-document": "^2.0.0-beta.202",
+    "@tiptap/extension-floating-menu": "^2.0.0-beta.202",
     "@tiptap/extension-highlight": "^2.0.0-beta.202",
     "@tiptap/extension-placeholder": "^2.0.0-beta.202",
     "@tiptap/extension-typography": "^2.0.0-beta.202",
@@ -38,9 +39,9 @@
     "electron-router-dom": "^1.0.5",
     "electron-store": "^8.1.0",
     "phosphor-react": "^1.4.1",
-    "react-router-dom": "^6.4.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
