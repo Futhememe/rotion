@@ -14,7 +14,7 @@ export function Default() {
       className="h-screen w-screen text-rotion-100 flex"
     >
       <Sidebar />
-      <div className="flex-1 flex flex-col max-h-screen">
+      <div className="flex-1 flex flex-col max-h-screen overflow-x-hidden">
         <Header isSidebarOpen={isSidebarOpen} />
         <Outlet />
       </div>

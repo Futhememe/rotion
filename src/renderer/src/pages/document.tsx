@@ -82,7 +82,7 @@ export const Document = () => {
         </ToC.Root>
       </aside>
 
-      <section className="flex-1 flex flex-col items-center">
+      <section className="flex-1 flex flex-col items-center max-h-screen">
         {!isFetching && data && (
           <Editor
             content={initialContent}
