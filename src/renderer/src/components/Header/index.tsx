@@ -35,7 +35,7 @@ export function Header({ isSidebarOpen }: IHeader) {
     <div
       id="header"
       className={clsx(
-        'border-b h-14 border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag',
+        'border-b h-14 bg-rotion-800 border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag sticky top-0 z-10',
         {
           'pl-24': !isSidebarOpen && isMacOS,
           'w-screen': !isSidebarOpen,
@@ -57,14 +57,14 @@ export function Header({ isSidebarOpen }: IHeader) {
           <Breadcrumbs.Root>
             <Breadcrumbs.Item>
               <Code weight="bold" className="h-4 w-4 text-pink-500" />
-              Estrutura técnica
+              Workspace
             </Breadcrumbs.Item>
-            <Breadcrumbs.Separator />
+            {/* <Breadcrumbs.Separator />
             <Breadcrumbs.HiddenItems />
             <Breadcrumbs.Separator />
-            <Breadcrumbs.Item>Back-end</Breadcrumbs.Item>
+            <Breadcrumbs.Item>Back-end</Breadcrumbs.Item> */}
             <Breadcrumbs.Separator />
-            <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
+            <Breadcrumbs.Item isActive>Novo documento</Breadcrumbs.Item>
           </Breadcrumbs.Root>
 
           <div className="inline-flex region-no-drag">
