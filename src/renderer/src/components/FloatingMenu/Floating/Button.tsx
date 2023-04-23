@@ -9,7 +9,10 @@ interface IFloatingButton {
 
 export const FloatingButton = ({ icon, content, title, onClick }: IFloatingButton) => {
   return (
-    <div className="flex gap-2 px-3 py-2 cursor-pointer w-full" onClick={() => onClick?.()}>
+    <div
+      className="flex gap-2 px-3 py-2 cursor-pointer w-full hover:bg-rotion-700 delay-75"
+      onClick={() => onClick?.()}
+    >
       <div className="flex h-12 w-12 bg-white rounded-md items-center justify-center text-rotion-900 ">
         {icon}
       </div>
