@@ -7,6 +7,7 @@ import Underline from '@tiptap/extension-underline'
 import { EditorContent, JSONContent, useEditor } from '@tiptap/react'
 import { BubbleMenu } from '../BubbleMenu'
 import { FloatingMenu } from '../FloatingMenu'
+import { FloatingPlaceholder } from '../FloatingPlaceholder'
 
 export interface OnContentUpdatedParams {
   title: string
@@ -65,6 +66,7 @@ export const Editor = ({ content, onContentUpdated, onCreateEditor }: IEditor) =
 
   return (
     <div>
+      {editor && <FloatingPlaceholder editor={editor} />}
       {editor && <FloatingMenu editor={editor} />}
       {editor && <BubbleMenu editor={editor} />}
       <EditorContent className="w-[65ch]" editor={editor} />
