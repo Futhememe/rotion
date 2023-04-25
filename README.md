@@ -1,4 +1,13 @@
-# Rotion
+<h1 align="center">
+    <img alt="Rotion" title="Rotion" src=".github/background.svg" />
+</h1>
+
+<p align="center">
+  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-project">Project</a>
+</p>
+
+<br>
 
 ## 🖥️Test on your machine
 
@@ -33,7 +42,7 @@ This projects is developed with the technologies below:
 
 ## 🗂️ Project
 
-A Notinha alternative created just with study purposes.
+A Notion alternative created just with study purposes.
 
 Created on [Rocketseat](https://github.com/rocketseat-education) course
 
