@@ -1,6 +1,14 @@
 import { FloatingMenu as TipFloatingMenu, FloatingMenuProps } from '@tiptap/react'
 import { Floating } from './Floating'
-import { Code, TextHOne, TextHThree, TextHTwo } from 'phosphor-react'
+import {
+  Code,
+  ListBullets,
+  ListNumbers,
+  Quotes,
+  TextHOne,
+  TextHThree,
+  TextHTwo,
+} from 'phosphor-react'
 
 interface IFloatingMenu extends Omit<FloatingMenuProps, 'children'> {}
 
@@ -46,12 +54,30 @@ export const FloatingMenu = ({ editor, ...rest }: IFloatingMenu) => {
           content="Small section heading"
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
         />
+        <Floating.Button
+          icon={<ListBullets size={32} />}
+          title="Bullet list"
+          content="Create a simple bulleted list"
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+        />
+        <Floating.Button
+          icon={<ListNumbers size={32} />}
+          title="Numbered list"
+          content="Create a list with numbering"
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        />
+        <Floating.Button
+          icon={<Quotes size={32} />}
+          title="Quote"
+          content="Capture a quote"
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+        />
         <Floating.Title title="Blocos de midia" />
         <Floating.Button
           icon={<Code size={32} />}
           title="Code"
           content="Capture a code snippet"
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          onClick={() => editor.chain().focus().toggleCodeBlock({ language: 'javascript' }).run()}
         />
       </Floating.Root>
     </TipFloatingMenu>

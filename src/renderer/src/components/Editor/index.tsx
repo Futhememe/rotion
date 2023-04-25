@@ -4,10 +4,14 @@ import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import { EditorContent, JSONContent, useEditor } from '@tiptap/react'
 import { BubbleMenu } from '../BubbleMenu'
 import { FloatingMenu } from '../FloatingMenu'
 import { FloatingPlaceholder } from '../FloatingPlaceholder'
+import js from 'highlight.js/lib/languages/javascript'
+import ts from 'highlight.js/lib/languages/typescript'
+import { lowlight } from 'lowlight'
 
 export interface OnContentUpdatedParams {
   title: string
@@ -20,6 +24,9 @@ interface IEditor {
   onContentUpdated: (params: OnContentUpdatedParams) => void
   onCreateEditor?: (content: JSONContent) => void
 }
+
+lowlight.registerLanguage('javascript', js)
+lowlight.registerLanguage('ts', ts)
 
 export const Editor = ({ content, onContentUpdated, onCreateEditor }: IEditor) => {
   const editor = useEditor({
@@ -38,6 +45,9 @@ export const Editor = ({ content, onContentUpdated, onCreateEditor }: IEditor) =
         content: 'heading block*',
       }),
       Underline,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
     ],
     onCreate: ({ editor }) => {
       const jsonContent = editor.getJSON()
