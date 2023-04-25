@@ -1,5 +1,5 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import clsx from 'clsx'
 import { Code, CaretDoubleRight, TrashSimple } from 'phosphor-react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -15,6 +15,12 @@ export function Header({ isSidebarOpen }: IHeader) {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const isMacOS = process.platform === 'darwin'
+
+  const { data: documents } = useQuery(['documents'], async () => {
+    const res = await window.api.fetchDocuments()
+
+    return res.data
+  })
 
   const { mutateAsync: deleteDocument, isLoading: isDeletingDocument } = useMutation(
     async () => {
@@ -64,7 +70,9 @@ export function Header({ isSidebarOpen }: IHeader) {
             <Breadcrumbs.Separator />
             <Breadcrumbs.Item>Back-end</Breadcrumbs.Item> */}
             <Breadcrumbs.Separator />
-            <Breadcrumbs.Item isActive>Novo documento</Breadcrumbs.Item>
+            <Breadcrumbs.Item isActive>
+              {documents?.find((current) => current.id === id)?.title || 'Untitled'}
+            </Breadcrumbs.Item>
           </Breadcrumbs.Root>
 
           <div className="inline-flex region-no-drag">

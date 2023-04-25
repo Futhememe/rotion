@@ -54,7 +54,7 @@ export function Sidebar() {
             <Navigation.SectionContent>
               {data?.map((document) => (
                 <Navigation.Link to={`/document/${document.id}`} key={document.id}>
-                  {document.title}
+                  {document.title || 'Untitled'}
                 </Navigation.Link>
               ))}
             </Navigation.SectionContent>
